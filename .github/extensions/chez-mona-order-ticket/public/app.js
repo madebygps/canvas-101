@@ -5,6 +5,40 @@ let pending = false;
 let revision = -1;
 const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+let activeStep = 0;
+function selectStep(index, focus = false) {
+  activeStep = index;
+  tabs.forEach((tab, position) => {
+    const selected = position === index;
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
+  });
+  document.querySelector('#previous-step').hidden = index === 0;
+  const next = document.querySelector('#next-step');
+  next.hidden = index === tabs.length - 1;
+  if (!next.hidden) next.textContent = `Next: ${tabs[index + 1].textContent.replace(/^\d+\.\s*/, '')}`;
+  document.querySelector('#copy-status').textContent = '';
+  if (focus) tabs[index].focus();
+}
+tabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectStep(index));
+  tab.addEventListener('keydown', event => {
+    let target;
+    if (event.key === 'ArrowRight') target = (index + 1) % tabs.length;
+    if (event.key === 'ArrowLeft') target = (index + tabs.length - 1) % tabs.length;
+    if (event.key === 'Home') target = 0;
+    if (event.key === 'End') target = tabs.length - 1;
+    if (target !== undefined) {
+      event.preventDefault();
+      selectStep(target, true);
+    }
+  });
+});
+document.querySelector('#previous-step').addEventListener('click', () => selectStep(activeStep - 1, true));
+document.querySelector('#next-step').addEventListener('click', () => selectStep(activeStep + 1, true));
+
 function render(ticket) {
   if (ticket.revision < revision) return;
   revision = ticket.revision;
@@ -15,14 +49,14 @@ function render(ticket) {
     `<div class="item"><div><span class="quantity">${item.quantity} x</span><strong>${escape(item.name)}</strong></div><button class="secondary" data-action="remove_dish" data-dish="${escape(item.dishId)}" aria-label="Remove one ${escape(item.name)}">Remove</button></div>`).join('') :
     '<p class="empty">Your ticket is empty.<br>Choose a dish to get cooking.</p>';
   document.querySelector('#clear').hidden = !ticket.items.length;
-  for (const button of document.querySelectorAll('button')) button.disabled = pending;
+  for (const button of document.querySelectorAll('#workspace button')) button.disabled = pending;
 }
 
 async function act(action, input) {
   if (pending) return;
   pending = true;
   error.hidden = true;
-  for (const button of document.querySelectorAll('button')) button.disabled = true;
+  for (const button of document.querySelectorAll('#workspace button')) button.disabled = true;
   try {
     const response = await fetch('/action', {
       method: 'POST',
@@ -38,7 +72,7 @@ async function act(action, input) {
     error.hidden = false;
   } finally {
     pending = false;
-    for (const button of document.querySelectorAll('button')) button.disabled = false;
+    for (const button of document.querySelectorAll('#workspace button')) button.disabled = false;
   }
 }
 document.querySelector('main').addEventListener('click', event => {

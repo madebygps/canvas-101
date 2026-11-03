@@ -10,24 +10,35 @@
 <body>
   <header>
     <p class="eyebrow">CHEZ MONA / CANVAS 101 / ABOUT 5 MINUTES</p>
-    <h1>Agent interactions shouldn't be limited to chat.</h1>
-    <p>A canvas is an interactive workspace alongside your conversation. Use its controls yourself, ask the agent to make changes, and inspect the same result.</p>
-    <p>This canvas is an order ticket. Others can be documents, project boards, or dashboards tailored to your workflow. No coding required for this exercise.</p>
+    <h1>Build an order together</h1>
+    <p>Four short steps to discover canvases. No coding required.</p>
   </header>
+  <div class="lesson-tabs" role="tablist" aria-label="Canvas 101 lesson">
+    <button id="tab-intro" role="tab" aria-selected="true" aria-controls="intro" tabindex="0">1. What is a canvas?</button>
+    <button id="tab-you" role="tab" aria-selected="false" aria-controls="you-change" tabindex="-1">2. You interact</button>
+    <button id="tab-agent" role="tab" aria-selected="false" aria-controls="agent-changes" tabindex="-1">3. The agent interacts</button>
+    <button id="tab-check" role="tab" aria-selected="false" aria-controls="you-steer" tabindex="-1">4. Summarize and check</button>
+  </div>
   <main class="lesson-layout">
-    <section class="instructions" aria-labelledby="instructions-title">
-      <h2 id="instructions-title">Build an order together</h2>
-      <p><strong>Chat:</strong> the conversation where you send prompts to the agent. <strong>Canvas:</strong> this panel, where you see and change the ticket.</p>
-      <nav class="lesson-nav" aria-label="Lesson sections"><a href="#you-change">1. You change</a><a href="#agent-changes">2. Agent changes</a><a href="#you-steer">3. You steer</a><a href="#why">4. Why it matters</a></nav>
-      <section class="lesson-step" id="you-change">
-        <p class="eyebrow">1 / YOU CHANGE / 45 SECONDS</p>
+    <section class="instructions" aria-label="Lesson instructions">
+      <section class="lesson-step" id="intro" role="tabpanel" aria-labelledby="tab-intro" tabindex="0">
+        <p class="eyebrow">STEP 1 OF 4 / ABOUT 1 MINUTE</p>
+        <h2>Agent interactions shouldn't be limited to chat.</h2>
+        <p>A canvas is an interactive workspace alongside your conversation. You and the agent can work on the same thing, using controls or chat.</p>
+        <p><strong>Chat:</strong> where you tell the agent what you want. <strong>Canvas:</strong> where you see, change, and check the result.</p>
+        <p>This canvas is an order ticket. The menu buttons and ticket are real controls, not a picture. In the next tabs, you'll add a dish yourself, ask the agent to add more, then ask it to summarize.</p>
+        <p class="notice"><strong>Why it matters:</strong> you don't have to describe every edit in a prompt. You can steer work directly and inspect the agent's changes in one shared place.</p>
+        <p>Other canvases can be documents, project boards, or dashboards tailored to your workflow.</p>
+      </section>
+      <section class="lesson-step" id="you-change" role="tabpanel" aria-labelledby="tab-you" tabindex="0" hidden>
+        <p class="eyebrow">STEP 2 OF 4 / ABOUT 1 MINUTE</p>
         <h3>A workspace, not a picture</h3>
         <p>You can work directly with the artifact instead of describing every change in chat.</p>
         <p><strong>Try it:</strong> click <strong>Add Omelette</strong> in the <a href="#workspace">menu</a>.</p>
         <p class="notice"><strong>Notice:</strong> the ticket changes immediately. You made a real edit without a prompt.</p>
       </section>
-      <section class="lesson-step" id="agent-changes">
-        <p class="eyebrow">2 / THE AGENT CHANGES / 75 SECONDS</p>
+      <section class="lesson-step" id="agent-changes" role="tabpanel" aria-labelledby="tab-agent" tabindex="0" hidden>
+        <p class="eyebrow">STEP 3 OF 4 / ABOUT 90 SECONDS</p>
         <h3>Two ways to work on one ticket</h3>
         <p>The agent can use this canvas's actions to update the same order you just edited.</p>
         <p><strong>Try it:</strong> copy this prompt, paste it into the chat, and send it.</p>
@@ -35,30 +46,24 @@
         <button class="secondary" data-copy="add-prompt">Copy add-Soup prompt</button>
         <p class="notice"><strong>Notice:</strong> watch for two Soups on your ticket. Copying a prompt does not send it or change the ticket.</p>
       </section>
-      <section class="lesson-step" id="you-steer">
-        <p class="eyebrow">3 / YOU STEER AND VERIFY / 90 SECONDS</p>
-        <h3>Make a correction, then check it</h3>
+      <section class="lesson-step" id="you-steer" role="tabpanel" aria-labelledby="tab-check" tabindex="0" hidden>
+        <p class="eyebrow">STEP 4 OF 4 / ABOUT 90 SECONDS</p>
+        <h3>Ask the agent to summarize your order</h3>
         <p>You stay in control. Switch between direct edits and conversation as the work evolves.</p>
         <p><strong>Try it:</strong> click <strong>Remove</strong> beside Soup once on <a href="#ticket-title">your ticket</a>. Then send this prompt in chat.</p>
-        <blockquote id="check-prompt">What's on my ticket now?</blockquote>
+        <blockquote id="check-prompt">Summarize my current order, including quantities.</blockquote>
         <button class="secondary" data-copy="check-prompt">Copy check-ticket prompt</button>
         <p class="notice"><strong>Notice:</strong> compare the agent's answer with your actual ticket. Does it include your correction? You don't need to retype your edit: the agent can read the current ticket when asked.</p>
         <p>The agent isn't automatically watching every click. It reads and changes the ticket using the capabilities provided by this canvas.</p>
-      </section>
-      <section class="lesson-step" id="why">
-        <p class="eyebrow">4 / WHY IT MATTERS / 90 SECONDS</p>
-        <h3>The ticket is just the example</h3>
-        <p>Chat helps you express intent. A canvas makes the work visible so you can inspect, steer, and verify it.</p>
-        <ul class="examples">
-          <li><strong>Release checklist:</strong> check off an item yourself, then ask the agent to add missing checks.</li>
-          <li><strong>Project board:</strong> move a card, then ask the agent to reprioritize the remaining work.</li>
-          <li><strong>Document:</strong> edit a paragraph, then ask the agent to revise around your changes.</li>
-        </ul>
-        <p>A canvas can have buttons, forms, editors, or charts suited to the task. Its human controls and agent actions must be built for that workflow; not every canvas has the same capabilities.</p>
+        <p class="notice"><strong>Take it to your work:</strong> check off a release task yourself, then ask the agent what's left. Edit a document, then ask for a summary. The order ticket is just one example of a shared workspace.</p>
         <details><summary>How could I create my own?</summary><p>In a new session, use <code>/create-canvas</code> and describe what you and the agent should each be able to do. For example: <q>Create a release checklist canvas where I can check off items and the agent can read, add, and update them.</q></p></details>
         <p><strong>Take a moment:</strong> what task in your work would be easier to inspect and steer visually?</p>
         <p class="finish">Finished? Return to the Chez Mona launcher for the quiz.</p>
       </section>
+      <nav class="step-navigation" aria-label="Lesson navigation">
+        <button id="previous-step" class="secondary" hidden>Back</button>
+        <button id="next-step">Next: You interact</button>
+      </nav>
     </section>
     <aside id="workspace" aria-label="Interactive order workspace">
       <p class="eyebrow">YOUR LIVE CANVAS / TRY THE CONTROLS</p>
