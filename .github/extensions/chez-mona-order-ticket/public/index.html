@@ -8,7 +8,17 @@
   <script src="/app.js" defer></script>
 </head>
 <body>
-  <header><p class="eyebrow">CHEZ MONA</p><h1>Order ticket</h1><p>You add a dish. Ask the agent to add another.</p></header>
+  <header><p class="eyebrow">CHEZ MONA</p><h1>Order ticket</h1><p>You and the agent work on the same ticket. Try it together.</p></header>
+  <section class="instructions" aria-labelledby="instructions-title">
+    <h2 id="instructions-title">Build an order together</h2>
+    <ol>
+      <li><strong>You click:</strong> choose <strong>Add Omelette</strong> below.</li>
+      <li><strong>You ask:</strong> type <q>Add two Soups to my ticket.</q> in the chat. Watch the ticket update.</li>
+      <li><strong>You correct:</strong> click <strong>Remove</strong> beside Soup once.</li>
+      <li><strong>You check:</strong> ask <q>What's on my ticket now?</q> in the chat. Compare the answer with your ticket: <strong>one Omelette and one Soup</strong>.</li>
+    </ol>
+    <p>Finished? Return to the Chez Mona launcher for the quiz.</p>
+  </section>
   <main>
     <section aria-labelledby="menu-title"><h2 id="menu-title">On the menu</h2><div id="menu"></div></section>
     <section class="ticket" aria-labelledby="ticket-title">

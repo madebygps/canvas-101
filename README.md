@@ -8,9 +8,25 @@ A local Chez Mona lab for the GitHub Copilot app. No remote, package installatio
 2. Look for the folder **Canvas 101**. On its right side, click the **+** button to start a new session.
 3. Use this prompt: **Open the Chez Mona Order Ticket canvas**.
 4. Click **Add Omelette** in the canvas.
-5. Ask the agent: **Add two Soups to the ticket**, then **Remove the Omelette**.
+5. Ask the agent: **Add two Soups to my ticket.** Watch the order update.
+6. Use the canvas to remove one Soup yourself.
+7. Ask: **What's on my ticket now?** Compare the answer with the visible order: one Omelette and one Soup.
 
 Both your clicks and the agent's canvas actions update the same order ticket. A new session starts with an empty ticket. Reopening the canvas in the same session preserves the order.
+
+The lesson is to switch between clicking, asking and checking. The agent reads the current ticket using `get_ticket`, including changes you made directly. A click changes the ticket; it does not automatically trigger agent reasoning or a chat reply.
+
+The canvas includes all four exercise steps above the menu, with the exact chat prompts, expected final order and a reminder to return to the launcher for the quiz.
+
+## Take it with you
+
+A release checklist, issue board or project dashboard can use the same shared-work-surface pattern. In your own session after the lab, try:
+
+```text
+/create-canvas Create a release checklist canvas where I can check off items and the agent can read, add, and update them.
+```
+
+Describe the workflow, what you should be able to do and what the agent should be able to do. Creating a new canvas is a takeaway, not a required step in this booth lab.
 
 ## What is in this repo?
 
