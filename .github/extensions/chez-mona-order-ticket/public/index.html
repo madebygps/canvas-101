@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chez Mona Order Ticket</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header><p class="eyebrow">CHEZ MONA</p><h1>Order ticket</h1><p>You add a dish. Ask the agent to add another.</p></header>
+  <main>
+    <section aria-labelledby="menu-title"><h2 id="menu-title">On the menu</h2><div id="menu"></div></section>
+    <section class="ticket" aria-labelledby="ticket-title">
+      <div class="ticket-heading"><h2 id="ticket-title">Your ticket</h2><span id="total">0 dishes</span></div>
+      <div id="items" aria-live="polite"></div>
+      <button id="clear" class="secondary" hidden>Clear ticket</button>
+    </section>
+  </main>
+  <p id="error" role="alert" hidden></p>
+  <footer><span id="connection" role="status">Connecting to your ticket...</span><span>CANVAS 101</span></footer>
+</body>
+</html>
