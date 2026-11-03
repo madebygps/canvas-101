@@ -19,7 +19,7 @@
         <button id="tab-intro" role="tab" aria-selected="true" aria-controls="intro" tabindex="0"><span class="step-num">1</span> What is a canvas?</button>
         <button id="tab-you" role="tab" aria-selected="false" aria-controls="you-change" tabindex="-1"><span class="step-num">2</span> You interact</button>
         <button id="tab-agent" role="tab" aria-selected="false" aria-controls="agent-changes" tabindex="-1"><span class="step-num">3</span> The agent interacts</button>
-        <button id="tab-check" role="tab" aria-selected="false" aria-controls="you-steer" tabindex="-1"><span class="step-num">4</span> Summarize and check</button>
+        <button id="tab-check" role="tab" aria-selected="false" aria-controls="you-steer" tabindex="-1"><span class="step-num">4</span> Conclusion</button>
       </div>
       <section class="lesson-step" id="intro" role="tabpanel" aria-labelledby="tab-intro" tabindex="0">
         <h2>What is a canvas?</h2>
@@ -52,24 +52,29 @@
         <h2>Let the agent make a change</h2>
         <p>Now it's time to see how your agent can interact with the canvas.</p>
         <ol class="steps">
-          <li>Click <strong>Send prompt to agent</strong> below.</li>
-          <li>Watch the prompt appear in your chat.</li>
-          <li>Watch two Soups appear on your ticket.</li>
+          <li>Click <strong>Send prompt to agent</strong>.
+            <button class="send" data-send="add-soup">Send prompt to agent</button>
+          </li>
+          <li>In your chat, you should see the prompt <strong>Add two Soups to my ticket.</strong> appear.</li>
+          <li>The agent should start working on adding the Soups.</li>
+          <li>View your ticket to see the two Soups added to it.</li>
         </ol>
-        <blockquote id="add-prompt">Add two Soups to my ticket.</blockquote>
-        <button class="send" data-send="add-soup">Send prompt to agent</button>
         <hr>
         <h3>What's happening under the hood</h3>
         <p>The canvas gives the agent a list of actions it can call, like <code>add_dish</code>. When you ask for Soup, the agent calls the same <code>add_dish</code> action your button used, so you're both changing the same ticket.</p>
       </section>
       <section class="lesson-step" id="you-steer" role="tabpanel" aria-labelledby="tab-check" tabindex="0" hidden>
         <h2>Check the result together</h2>
-        <p>Remove one Soup from <a href="#ticket-title">your ticket</a>. Then send this prompt in chat.</p>
-        <blockquote id="check-prompt">Summarize my current order, including quantities.</blockquote>
-        <button class="secondary" data-copy="check-prompt">Copy check-ticket prompt</button>
-        <p>Compare the agent's answer with your actual ticket. It can read your correction when asked.</p>
-        <p><strong>Under the hood:</strong> the agent doesn't remember the ticket from chat. It calls <code>get_ticket</code> to read the live state, including your edits. That's why a canvas is a trustworthy shared source of truth.</p>
-        <p class="finish">Return to the Chez Mona launcher for the quiz.</p>
+        <p>You can also ask the agent directly about anything on the canvas in chat.</p>
+        <ol class="steps">
+          <li>Remove one Soup from your ticket by clicking <strong>Remove</strong>.</li>
+          <li>In your chat, type <strong>Summarize my current order, including quantities.</strong></li>
+          <li>Compare the agent's answer with your actual ticket.</li>
+        </ol>
+        <hr>
+        <h3>What's happening under the hood</h3>
+        <p>The agent doesn't remember the ticket from chat. It calls <code>get_ticket</code> to read the live state, including your edits. That's why a canvas is a trustworthy shared source of truth.</p>
+        <p class="finish">🎉 Congrats, you made it to the end of this lab! Return to Chez Mona to finish the quiz.</p>
       </section>
       <nav class="step-navigation" aria-label="Lesson navigation">
         <button id="previous-step" class="secondary" hidden>Back</button>
