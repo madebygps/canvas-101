@@ -10,13 +10,15 @@ A local Chez Mona lab for the GitHub Copilot app. No remote, package installatio
 4. Click **Add Omelette** in the canvas.
 5. Ask the agent: **Add two Soups to my ticket.** Watch the order update.
 6. Use the canvas to remove one Soup yourself.
-7. Ask: **What's on my ticket now?** Compare the answer with the visible order: one Omelette and one Soup.
+7. Ask: **What's on my ticket now?** Compare the answer with your actual visible order, including any extra changes you tried.
 
 Both your clicks and the agent's canvas actions update the same order ticket. A new session starts with an empty ticket. Reopening the canvas in the same session preserves the order.
 
 The lesson is to switch between clicking, asking and checking. The agent reads the current ticket using `get_ticket`, including changes you made directly. A click changes the ticket; it does not automatically trigger agent reasoning or a chat reply.
 
-The canvas includes all four exercise steps above the menu, with the exact chat prompts, expected final order and a reminder to return to the launcher for the quiz.
+The canvas includes a single-page, approximately five-minute lesson with four stages: direct editing, agent editing, correction and verification, and why canvases matter. Each stage explains the concept, gives an action and tells the learner what to notice. Prompt copy buttons only copy text; guests paste and send it in chat. Clipboard failures show manual-copy instructions.
+
+On wide panels, the live menu and ticket stay beside the lesson. Narrow panels use a single scroll with links to the controls. The lesson does not claim automatic completion or assume a fixed final order. It ends with practical examples, optional `/create-canvas` guidance and a reminder to return to the launcher for the quiz.
 
 ## Take it with you
 
