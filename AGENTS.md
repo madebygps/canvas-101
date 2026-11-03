@@ -1,9 +1,10 @@
 # Canvas 101 lab
 
-This repository is a small interactive lab, not a coding exercise.
+This repository is a small interactive lab. Guests use the ticket; its author can also improve the canvas from this chat.
 
 - When asked to open the canvas, open **Chez Mona Order Ticket** (`chez-mona-order-ticket`).
-- Use canvas capabilities and actions to inspect or change the ticket. Do not edit source files, JSON files or create a replacement canvas.
+- For order requests, use canvas capabilities and actions to inspect or change the ticket. Do not edit source or stored ticket JSON to fulfill an order.
+- When the user explicitly requests changes to the canvas interface, lesson, wording, layout or behavior, edit this worktree's existing extension source. Preserve the current ticket and unrelated changes; do not create a replacement canvas. Refresh the existing panel after changes. These authoring requests are allowed, not restricted to ticket actions.
 - `add_dish` and `remove_dish` accept a menu dish ID and quantity. `get_ticket` returns the menu and current order. `clear_ticket` empties it.
 - When asked what is on the ticket, call `get_ticket` and answer from its current state, including the guest's direct changes. Never infer the order from earlier chat messages.
 - If an order is ambiguous, ask which dish. Report unavailable extension capabilities explicitly rather than pretending an action succeeded.
