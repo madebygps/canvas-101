@@ -43,11 +43,11 @@ function render(ticket) {
   if (ticket.revision < revision) return;
   revision = ticket.revision;
   document.querySelector('#menu').innerHTML = ticket.menu.map(dish =>
-    `<article class="dish"><h3>${escape(dish.name)}</h3><p>${escape(dish.lab)}</p><button data-action="add_dish" data-dish="${escape(dish.id)}">Add ${escape(dish.name)}</button></article>`).join('');
+    `<article class="dish"><button data-action="add_dish" data-dish="${escape(dish.id)}">Add ${escape(dish.name)}</button></article>`).join('');
   document.querySelector('#total').textContent = `${ticket.total} ${ticket.total === 1 ? 'dish' : 'dishes'}`;
   document.querySelector('#items').innerHTML = ticket.items.length ? ticket.items.map(item =>
     `<div class="item"><div><span class="quantity">${item.quantity} x</span><strong>${escape(item.name)}</strong></div><button class="secondary" data-action="remove_dish" data-dish="${escape(item.dishId)}" aria-label="Remove one ${escape(item.name)}">Remove</button></div>`).join('') :
-    '<p class="empty">Your ticket is empty.<br>Choose a dish to get cooking.</p>';
+    '<p class="empty">Your ticket is empty.</p>';
   document.querySelector('#clear').hidden = !ticket.items.length;
   for (const button of document.querySelectorAll('#workspace button')) button.disabled = pending;
 }
@@ -97,7 +97,7 @@ const events = new EventSource(`/events?token=${encodeURIComponent(token)}`);
 events.onmessage = event => {
   try {
     render(JSON.parse(event.data));
-    connection.textContent = 'You and the agent share this ticket.';
+    connection.textContent = 'Connected';
   } catch (failure) {
     console.error('Ticket update:', failure);
     error.textContent = `Could not read the ticket update: ${failure.message}`;

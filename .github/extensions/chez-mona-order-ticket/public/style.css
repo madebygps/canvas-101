@@ -13,7 +13,8 @@ header>p:not(.eyebrow){color:var(--text-color-muted,#617064);margin:0 0 16px;max
 .instructions p{margin:14px 0 0;font-size:13px;color:var(--text-color-muted,#617064)}
 main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;margin-top:24px}
 #menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:20px}
-.dish{padding:16px;border:1px solid var(--border-color-default,#d5ddcf);border-radius:12px}
+.dish{min-width:0}
+.dish button{width:100%}
 .dish h3{margin:0;font-size:17px}
 .dish p{font-size:12px;margin:5px 0 10px;color:var(--text-color-muted,#617064)}
 button{font:600 14px var(--font-sans,"Segoe UI",sans-serif);cursor:pointer;border:1px solid transparent;border-radius:7px;background:#245541;color:#fff;padding:11px 14px;min-height:44px}
@@ -55,5 +56,5 @@ code{font-family:var(--font-mono,Consolas,monospace);overflow-wrap:anywhere}
 #workspace>.eyebrow{margin-bottom:16px}
 .workspace-note{font-size:13px;color:var(--text-color-muted,#617064)}
 #copy-status:not(:empty){position:fixed;bottom:16px;left:16px;right:16px;max-width:560px;margin:0 auto;padding:14px;background:var(--background-color-default,#faf8f0);border:1px solid var(--border-color-default,#a9b8a5);border-radius:8px;box-shadow:0 3px 12px #0002}
-@media(max-width:760px){main{grid-template-columns:1fr}body{padding:18px}#workspace{position:static}.ticket{min-height:160px}.dish{padding:12px}.dish button{width:100%;padding:10px 6px}h1{font-size:28px}.lesson-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){main{grid-template-columns:1fr}body{padding:18px}#workspace{position:static}.ticket{min-height:160px}.dish button{padding:10px 6px}h1{font-size:28px}.lesson-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}

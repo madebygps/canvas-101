@@ -18,7 +18,7 @@ The lesson is to switch between clicking, asking and checking. The agent reads t
 
 The canvas includes an approximately five-minute lesson in four tabs: **What is a canvas?**, **You interact**, **The agent interacts**, and **Summarize and check**. Each tab explains the concept, gives an action and tells the learner what to notice. Use Back/Next, click a tab, or use arrow/Home/End keys while a tab has focus. Prompt copy buttons only copy text; guests paste and send it in chat. Clipboard failures show manual-copy instructions.
 
-On wide panels, the live menu and ticket stay beside the selected lesson. Narrow panels stack them below it with links to the controls. Switching tabs preserves the shared order and does not change it. The lesson does not claim automatic completion or assume a fixed final order. It ends with practical examples, optional `/create-canvas` guidance and a reminder to return to the launcher for the quiz.
+Each tab keeps one concept and one action, without repeated step labels, timings, or extra callouts. On wide panels, the live menu and ticket stay beside the selected lesson. Narrow panels stack them below it with links to the controls. Switching tabs preserves the shared order and does not change it. The lesson does not claim automatic completion or assume a fixed final order. It ends with a reminder to return to the launcher for the quiz; optional `/create-canvas` guidance stays in the launcher takeaway and this README.
 
 ## Take it with you
 
