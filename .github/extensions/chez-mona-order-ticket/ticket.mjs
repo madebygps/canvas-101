@@ -12,6 +12,10 @@ export const menu = [
   { id: 'dip', name: 'Dip', lab: 'Security' }
 ];
 const assets = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
+// The panel can only send these fixed lesson prompts to chat, never arbitrary text.
+export const lessonPrompts = {
+  'add-soup': 'Add two Soups to my ticket.'
+};
 
 export class TicketStore extends EventEmitter {
   constructor(file) {
@@ -95,7 +99,7 @@ export class TicketStore extends EventEmitter {
   }
 }
 
-export async function startTicketServer(store) {
+export async function startTicketServer(store, sendPrompt) {
   const token = randomBytes(32).toString('hex');
   const connections = new Set();
   const send = snapshot => {
@@ -131,7 +135,7 @@ export async function startTicketServer(store) {
         req.on('close', () => connections.delete(res));
         return;
       }
-      if (req.method === 'POST' && url.pathname === '/action') {
+      if (req.method === 'POST' && (url.pathname === '/action' || url.pathname === '/prompt')) {
         if (req.headers.origin !== origin || req.headers['x-ticket-token'] !== token ||
             req.headers['content-type'] !== 'application/json') return reply(403, { error: 'Canvas request rejected. Reopen the canvas.' });
         let body = '';
@@ -141,6 +145,13 @@ export async function startTicketServer(store) {
         }
         let payload;
         try { payload = JSON.parse(body); } catch { return reply(400, { error: 'Invalid action JSON.' }); }
+        if (url.pathname === '/prompt') {
+          const prompt = Object.hasOwn(lessonPrompts, payload?.promptId) ? lessonPrompts[payload.promptId] : null;
+          if (!prompt) return reply(400, { error: 'Unknown lesson prompt.' });
+          if (!sendPrompt) return reply(503, { error: 'Sending to chat is unavailable.' });
+          try { await sendPrompt(prompt); return reply(200, { sent: true }); }
+          catch (error) { return reply(502, { error: `Could not send the prompt: ${error.message}` }); }
+        }
         try { return reply(200, await store.apply(payload.action, payload.input)); }
         catch (error) { return reply(400, { error: error.message }); }
       }

@@ -9,40 +9,66 @@
 </head>
 <body>
   <header>
-    <p class="eyebrow">CHEZ MONA / CANVAS 101 / ABOUT 5 MINUTES</p>
-    <h1>Build an order together</h1>
+    <h1>Canvas 101</h1>
+    <p>Learn how you and Copilot work in one shared space.</p>
   </header>
-  <div class="lesson-tabs" role="tablist" aria-label="Canvas 101 lesson">
-    <button id="tab-intro" role="tab" aria-selected="true" aria-controls="intro" tabindex="0">1. What is a canvas?</button>
-    <button id="tab-you" role="tab" aria-selected="false" aria-controls="you-change" tabindex="-1">2. You interact</button>
-    <button id="tab-agent" role="tab" aria-selected="false" aria-controls="agent-changes" tabindex="-1">3. The agent interacts</button>
-    <button id="tab-check" role="tab" aria-selected="false" aria-controls="you-steer" tabindex="-1">4. Summarize and check</button>
-  </div>
   <main class="lesson-layout">
     <section class="instructions" aria-label="Lesson instructions">
+      <p class="panel-label">Lesson</p>
+      <div class="lesson-tabs" role="tablist" aria-label="Canvas 101 lesson">
+        <button id="tab-intro" role="tab" aria-selected="true" aria-controls="intro" tabindex="0"><span class="step-num">1</span> What is a canvas?</button>
+        <button id="tab-you" role="tab" aria-selected="false" aria-controls="you-change" tabindex="-1"><span class="step-num">2</span> You interact</button>
+        <button id="tab-agent" role="tab" aria-selected="false" aria-controls="agent-changes" tabindex="-1"><span class="step-num">3</span> The agent interacts</button>
+        <button id="tab-check" role="tab" aria-selected="false" aria-controls="you-steer" tabindex="-1"><span class="step-num">4</span> Summarize and check</button>
+      </div>
       <section class="lesson-step" id="intro" role="tabpanel" aria-labelledby="tab-intro" tabindex="0">
-        <h2>Work with Copilot beyond chat</h2>
-        <p>A canvas is an interactive panel beside your chat. It gives you and Copilot a place to work on the same document, board, or other task.</p>
-        <p>Here, it's an order ticket. Add dishes with buttons or ask Copilot to add them. Either way, you can see and check the result here.</p>
+        <h2>What is a canvas?</h2>
+        <p>You're probably used to working with your agent through chat. But chat isn't always the best modality for every kind of work. That's why we built canvases.</p>
+        <p>A canvas is a shared, interactive surface for a work artifact, such as a plan, triage board, dashboard, release checklist, or spreadsheet. You and your agent both work on it.</p>
+        <h3>What can a canvas be?</h3>
+        <p>A few community canvases from <a href="https://awesome-copilot.github.com/extensions/" target="_blank" rel="noopener">Awesome Copilot</a>:</p>
+        <ul class="examples">
+          <li><strong>Agent Radar</strong> maps the Copilot agents on your computer and what they're doing.</li>
+          <li><strong>AI Credits Breakdown</strong> shows where your AI credits go, by day, repo and model.</li>
+          <li><strong>Artifact Explorer</strong> browses pull requests, workflow runs and their artifacts.</li>
+          <li><strong>Apng Studio</strong> lets you draw frames and export an animated PNG.</li>
+        </ul>
+        <h3>In this lesson</h3>
+        <p>The ticket on the right is a canvas. Its goal: help you build order tickets.</p>
+        <p class="aside">(Technically, this whole lesson is a canvas too. But you get the point.)</p>
       </section>
       <section class="lesson-step" id="you-change" role="tabpanel" aria-labelledby="tab-you" tabindex="0" hidden>
-        <h3>Make a change yourself</h3>
-        <p>Click <strong>Add Omelette</strong> in the <a href="#workspace">menu</a>.</p>
-        <p>Watch your ticket update. No chat prompt needed.</p>
+        <h2>Make a change yourself</h2>
+        <ol class="steps">
+          <li>Click <strong>Add Omelette</strong> in the ticket canvas.</li>
+          <li>You should see the quantity of omelettes increase on your ticket.</li>
+          <li>Feel free to add other dishes, remove them, or click <strong>Clear ticket</strong>.</li>
+        </ol>
+        <hr>
+        <h3>What's happening under the hood</h3>
+        <p>A canvas is a web app. Each button sends an action, like <code>add_dish</code>, to the canvas's server, which updates the ticket. That's what makes it useful: you can make changes directly, without writing a prompt.</p>
       </section>
       <section class="lesson-step" id="agent-changes" role="tabpanel" aria-labelledby="tab-agent" tabindex="0" hidden>
-        <h3>Let the agent make a change</h3>
-        <p>Copy this prompt, paste it into chat, and send it.</p>
+        <h2>Let the agent make a change</h2>
+        <p>Now it's time to see how your agent can interact with the canvas.</p>
+        <ol class="steps">
+          <li>Click <strong>Send prompt to agent</strong> below.</li>
+          <li>Watch the prompt appear in your chat.</li>
+          <li>Watch two Soups appear on your ticket.</li>
+        </ol>
         <blockquote id="add-prompt">Add two Soups to my ticket.</blockquote>
-        <button class="secondary" data-copy="add-prompt">Copy add-Soup prompt</button>
-        <p>The agent updates the same ticket you just edited.</p>
+        <button class="send" data-send="add-soup">Send prompt to agent</button>
+        <hr>
+        <h3>What's happening under the hood</h3>
+        <p>The canvas gives the agent a list of actions it can call, like <code>add_dish</code>. When you ask for Soup, the agent calls the same <code>add_dish</code> action your button used, so you're both changing the same ticket.</p>
       </section>
       <section class="lesson-step" id="you-steer" role="tabpanel" aria-labelledby="tab-check" tabindex="0" hidden>
-        <h3>Check the result together</h3>
+        <h2>Check the result together</h2>
         <p>Remove one Soup from <a href="#ticket-title">your ticket</a>. Then send this prompt in chat.</p>
         <blockquote id="check-prompt">Summarize my current order, including quantities.</blockquote>
         <button class="secondary" data-copy="check-prompt">Copy check-ticket prompt</button>
         <p>Compare the agent's answer with your actual ticket. It can read your correction when asked.</p>
+        <p><strong>Under the hood:</strong> the agent doesn't remember the ticket from chat. It calls <code>get_ticket</code> to read the live state, including your edits. That's why a canvas is a trustworthy shared source of truth.</p>
         <p class="finish">Return to the Chez Mona launcher for the quiz.</p>
       </section>
       <nav class="step-navigation" aria-label="Lesson navigation">
@@ -50,8 +76,9 @@
         <button id="next-step">Next</button>
       </nav>
     </section>
-    <aside id="workspace" aria-label="Interactive order workspace">
-      <section aria-labelledby="menu-title"><h2 id="menu-title">On the menu</h2><div id="menu"></div></section>
+    <aside id="workspace" aria-label="Ticket canvas">
+      <p class="panel-label">Ticket canvas</p>
+      <section aria-labelledby="menu-title"><h2 id="menu-title">Menu</h2><div id="menu"></div></section>
       <section class="ticket" aria-labelledby="ticket-title">
       <div class="ticket-heading"><h2 id="ticket-title">Your ticket</h2><span id="total">0 dishes</span></div>
       <div id="items" aria-live="polite"></div>
@@ -61,6 +88,6 @@
   </main>
   <p id="copy-status" role="status" aria-live="polite"></p>
   <p id="error" role="alert" hidden></p>
-  <footer><span id="connection" role="status">Connecting...</span></footer>
+  <p id="connection" role="status" hidden></p>
 </body>
 </html>

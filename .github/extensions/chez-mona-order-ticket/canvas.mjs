@@ -12,7 +12,7 @@ const dishInput = {
   additionalProperties: false
 };
 
-export function createOrderTicketCanvas({ createCanvas, CanvasError, workspacePath }) {
+export function createOrderTicketCanvas({ createCanvas, CanvasError, workspacePath, sendPrompt }) {
   const sessions = new Map();
   async function entry(ctx) {
     let pending = sessions.get(ctx.sessionId);
@@ -55,7 +55,7 @@ export function createOrderTicketCanvas({ createCanvas, CanvasError, workspacePa
     ],
     open: async ctx => {
       const current = await entry(ctx);
-      current.server ??= startTicketServer(current.store);
+      current.server ??= startTicketServer(current.store, sendPrompt);
       current.panels.add(ctx.instanceId);
       try {
         return { title: 'Chez Mona Order Ticket', url: (await current.server).url };

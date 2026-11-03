@@ -92,11 +92,32 @@ document.querySelectorAll('[data-copy]').forEach(button => {
     }
   });
 });
+document.querySelectorAll('[data-send]').forEach(button => {
+  button.addEventListener('click', async () => {
+    const status = document.querySelector('#copy-status');
+    button.disabled = true;
+    try {
+      const response = await fetch('/prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Ticket-Token': token },
+        body: JSON.stringify({ promptId: button.dataset.send })
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error);
+      status.textContent = 'Prompt sent. Check your chat.';
+    } catch (failure) {
+      console.error('Send prompt:', failure);
+      status.textContent = `Could not send the prompt: ${failure.message}. Type it into chat instead.`;
+    } finally {
+      button.disabled = false;
+    }
+  });
+});
 const events = new EventSource(`/events?token=${encodeURIComponent(token)}`);
 events.onmessage = event => {
   try {
     render(JSON.parse(event.data));
-    connection.textContent = 'Connected';
+    connection.hidden = true;
   } catch (failure) {
     console.error('Ticket update:', failure);
     error.textContent = `Could not read the ticket update: ${failure.message}`;
@@ -105,5 +126,6 @@ events.onmessage = event => {
 };
 events.onerror = () => {
   connection.textContent = 'Connection interrupted. Reconnecting...';
+  connection.hidden = false;
 };
 window.addEventListener('pagehide', () => events.close());
