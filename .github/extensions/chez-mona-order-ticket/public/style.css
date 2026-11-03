@@ -1,0 +1,30 @@
+:root{font-family:var(--font-sans,"Segoe UI",sans-serif);color:var(--text-color-default,#223e30);background:var(--background-color-default,#faf8f0)}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;max-width:980px}
+h1{font-size:32px;line-height:1.15;margin:6px 0 12px;font-weight:var(--font-weight-semibold,600)}
+h2{font-size:18px;margin:0 0 18px;font-weight:var(--font-weight-semibold,600)}
+p{font-size:15px;line-height:1.6}
+header>p:not(.eyebrow){color:var(--text-color-muted,#617064);margin:0 0 28px}
+.eyebrow{font-size:11px;letter-spacing:3px;font-weight:700;margin:0;color:var(--text-color-muted,#617064)}
+main{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+#menu{display:grid;gap:10px}
+.dish{padding:16px;border:1px solid var(--border-color-default,#d5ddcf);border-radius:12px}
+.dish h3{margin:0;font-size:17px}
+.dish p{font-size:12px;margin:5px 0 10px;color:var(--text-color-muted,#617064)}
+button{font:600 14px var(--font-sans,"Segoe UI",sans-serif);cursor:pointer;border:1px solid transparent;border-radius:7px;background:#245541;color:#fff;padding:11px 14px;min-height:44px}
+button:hover{filter:brightness(.92)}
+button:focus-visible{outline:3px solid var(--color-focus-outline,#c56630);outline-offset:3px}
+button:disabled{opacity:.5;cursor:wait}
+.secondary{background:transparent;color:var(--text-color-default,#223e30);border-color:var(--border-color-default,#d5ddcf)}
+.ticket{border:1px dashed var(--border-color-default,#a9b8a5);border-radius:12px;padding:20px;align-self:start;min-width:0}
+.ticket-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.ticket-heading span{font-size:12px;white-space:nowrap;color:var(--text-color-muted,#617064)}
+.empty{color:var(--text-color-muted,#617064);padding:20px 0;font-size:16px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--border-color-default,#d5ddcf)}
+.item strong{font-size:15px}.quantity{font:14px var(--font-mono,Consolas,monospace);margin-right:8px}
+.item button{font-size:13px;padding:8px}
+#clear{margin-top:16px;width:100%}
+#error{padding:14px;border:1px solid var(--true-color-red,#aa351e);border-radius:8px}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--border-color-default,#d5ddcf);display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--text-color-muted,#617064)}
+[hidden]{display:none!important}
+@media(max-width:600px){main{grid-template-columns:1fr}body{padding:18px}.ticket{min-height:160px}}
