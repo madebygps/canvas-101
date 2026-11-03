@@ -8,25 +8,70 @@
   <script src="/app.js" defer></script>
 </head>
 <body>
-  <header><p class="eyebrow">CHEZ MONA</p><h1>Order ticket</h1><p>You and the agent work on the same ticket. Try it together.</p></header>
-  <section class="instructions" aria-labelledby="instructions-title">
-    <h2 id="instructions-title">Build an order together</h2>
-    <ol>
-      <li><strong>You click:</strong> choose <strong>Add Omelette</strong> below.</li>
-      <li><strong>You ask:</strong> type <q>Add two Soups to my ticket.</q> in the chat. Watch the ticket update.</li>
-      <li><strong>You correct:</strong> click <strong>Remove</strong> beside Soup once.</li>
-      <li><strong>You check:</strong> ask <q>What's on my ticket now?</q> in the chat. Compare the answer with your ticket: <strong>one Omelette and one Soup</strong>.</li>
-    </ol>
-    <p>Finished? Return to the Chez Mona launcher for the quiz.</p>
-  </section>
-  <main>
-    <section aria-labelledby="menu-title"><h2 id="menu-title">On the menu</h2><div id="menu"></div></section>
-    <section class="ticket" aria-labelledby="ticket-title">
+  <header>
+    <p class="eyebrow">CHEZ MONA / CANVAS 101 / ABOUT 5 MINUTES</p>
+    <h1>Agent interactions shouldn't be limited to chat.</h1>
+    <p>A canvas is an interactive workspace alongside your conversation. Use its controls yourself, ask the agent to make changes, and inspect the same result.</p>
+    <p>This canvas is an order ticket. Others can be documents, project boards, or dashboards tailored to your workflow. No coding required for this exercise.</p>
+  </header>
+  <main class="lesson-layout">
+    <section class="instructions" aria-labelledby="instructions-title">
+      <h2 id="instructions-title">Build an order together</h2>
+      <p><strong>Chat:</strong> the conversation where you send prompts to the agent. <strong>Canvas:</strong> this panel, where you see and change the ticket.</p>
+      <nav class="lesson-nav" aria-label="Lesson sections"><a href="#you-change">1. You change</a><a href="#agent-changes">2. Agent changes</a><a href="#you-steer">3. You steer</a><a href="#why">4. Why it matters</a></nav>
+      <section class="lesson-step" id="you-change">
+        <p class="eyebrow">1 / YOU CHANGE / 45 SECONDS</p>
+        <h3>A workspace, not a picture</h3>
+        <p>You can work directly with the artifact instead of describing every change in chat.</p>
+        <p><strong>Try it:</strong> click <strong>Add Omelette</strong> in the <a href="#workspace">menu</a>.</p>
+        <p class="notice"><strong>Notice:</strong> the ticket changes immediately. You made a real edit without a prompt.</p>
+      </section>
+      <section class="lesson-step" id="agent-changes">
+        <p class="eyebrow">2 / THE AGENT CHANGES / 75 SECONDS</p>
+        <h3>Two ways to work on one ticket</h3>
+        <p>The agent can use this canvas's actions to update the same order you just edited.</p>
+        <p><strong>Try it:</strong> copy this prompt, paste it into the chat, and send it.</p>
+        <blockquote id="add-prompt">Add two Soups to my ticket.</blockquote>
+        <button class="secondary" data-copy="add-prompt">Copy add-Soup prompt</button>
+        <p class="notice"><strong>Notice:</strong> watch for two Soups on your ticket. Copying a prompt does not send it or change the ticket.</p>
+      </section>
+      <section class="lesson-step" id="you-steer">
+        <p class="eyebrow">3 / YOU STEER AND VERIFY / 90 SECONDS</p>
+        <h3>Make a correction, then check it</h3>
+        <p>You stay in control. Switch between direct edits and conversation as the work evolves.</p>
+        <p><strong>Try it:</strong> click <strong>Remove</strong> beside Soup once on <a href="#ticket-title">your ticket</a>. Then send this prompt in chat.</p>
+        <blockquote id="check-prompt">What's on my ticket now?</blockquote>
+        <button class="secondary" data-copy="check-prompt">Copy check-ticket prompt</button>
+        <p class="notice"><strong>Notice:</strong> compare the agent's answer with your actual ticket. Does it include your correction? You don't need to retype your edit: the agent can read the current ticket when asked.</p>
+        <p>The agent isn't automatically watching every click. It reads and changes the ticket using the capabilities provided by this canvas.</p>
+      </section>
+      <section class="lesson-step" id="why">
+        <p class="eyebrow">4 / WHY IT MATTERS / 90 SECONDS</p>
+        <h3>The ticket is just the example</h3>
+        <p>Chat helps you express intent. A canvas makes the work visible so you can inspect, steer, and verify it.</p>
+        <ul class="examples">
+          <li><strong>Release checklist:</strong> check off an item yourself, then ask the agent to add missing checks.</li>
+          <li><strong>Project board:</strong> move a card, then ask the agent to reprioritize the remaining work.</li>
+          <li><strong>Document:</strong> edit a paragraph, then ask the agent to revise around your changes.</li>
+        </ul>
+        <p>A canvas can have buttons, forms, editors, or charts suited to the task. Its human controls and agent actions must be built for that workflow; not every canvas has the same capabilities.</p>
+        <details><summary>How could I create my own?</summary><p>In a new session, use <code>/create-canvas</code> and describe what you and the agent should each be able to do. For example: <q>Create a release checklist canvas where I can check off items and the agent can read, add, and update them.</q></p></details>
+        <p><strong>Take a moment:</strong> what task in your work would be easier to inspect and steer visually?</p>
+        <p class="finish">Finished? Return to the Chez Mona launcher for the quiz.</p>
+      </section>
+    </section>
+    <aside id="workspace" aria-label="Interactive order workspace">
+      <p class="eyebrow">YOUR LIVE CANVAS / TRY THE CONTROLS</p>
+      <section aria-labelledby="menu-title"><h2 id="menu-title">On the menu</h2><div id="menu"></div></section>
+      <section class="ticket" aria-labelledby="ticket-title">
       <div class="ticket-heading"><h2 id="ticket-title">Your ticket</h2><span id="total">0 dishes</span></div>
       <div id="items" aria-live="polite"></div>
       <button id="clear" class="secondary" hidden>Clear ticket</button>
-    </section>
+      </section>
+      <p class="workspace-note">These controls and the agent's actions use the same ticket. Experimenting is welcome; compare the answer with what's actually here.</p>
+    </aside>
   </main>
+  <p id="copy-status" role="status" aria-live="polite"></p>
   <p id="error" role="alert" hidden></p>
   <footer><span id="connection" role="status">Connecting to your ticket...</span><span>CANVAS 101</span></footer>
 </body>

@@ -46,6 +46,19 @@ document.querySelector('main').addEventListener('click', event => {
   if (button) act(button.dataset.action, { dishId: button.dataset.dish, quantity: 1 });
 });
 document.querySelector('#clear').addEventListener('click', () => act('clear_ticket', {}));
+document.querySelectorAll('[data-copy]').forEach(button => {
+  button.addEventListener('click', async () => {
+    const status = document.querySelector('#copy-status');
+    const prompt = document.getElementById(button.dataset.copy).textContent;
+    try {
+      await navigator.clipboard.writeText(prompt);
+      status.textContent = 'Prompt copied. Paste it into the chat and send it.';
+    } catch (failure) {
+      console.error('Copy prompt:', failure);
+      status.textContent = 'Could not copy the prompt. Select the prompt text above and copy it manually, then paste it into chat.';
+    }
+  });
+});
 const events = new EventSource(`/events?token=${encodeURIComponent(token)}`);
 events.onmessage = event => {
   try {
