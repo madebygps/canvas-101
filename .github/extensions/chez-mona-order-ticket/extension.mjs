@@ -5,7 +5,11 @@ let session;
 const { canvas, close } = createOrderTicketCanvas({
   createCanvas,
   CanvasError,
-  workspacePath: () => session?.workspacePath
+  workspacePath: () => session?.workspacePath,
+  sendPrompt: prompt => {
+    if (!session) throw new Error('Session is not ready yet.');
+    return session.send({ prompt });
+  }
 });
 
 session = await joinSession({
