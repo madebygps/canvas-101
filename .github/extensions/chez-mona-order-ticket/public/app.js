@@ -18,7 +18,6 @@ function selectStep(index, focus = false) {
   document.querySelector('#previous-step').hidden = index === 0;
   const next = document.querySelector('#next-step');
   next.hidden = index === tabs.length - 1;
-  if (!next.hidden) next.textContent = `Next: ${tabs[index + 1].textContent.replace(/^\d+\.\s*/, '')}`;
   document.querySelector('#copy-status').textContent = '';
   if (focus) tabs[index].focus();
 }
