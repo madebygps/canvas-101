@@ -9,4 +9,5 @@ This repository is a small interactive lab. Guests use the ticket; its author ca
 - When asked what is on the ticket, call `get_ticket` and answer from its current state, including the guest's direct changes. Never infer the order from earlier chat messages.
 - If an order is ambiguous, ask which dish. Report unavailable extension capabilities explicitly rather than pretending an action succeeded.
 - Keep replies short. Explain how canvases work only when asked.
-- Do not add a remote, push changes or install packages. The Copilot app supplies the extension SDK.
+- Publishing this repository is allowed when the user requests it. Confirm the GitHub owner, repository name and visibility before creating a repository or adding a remote. Do not publish session artifacts, guest ticket data or secrets.
+- Do not install packages for the extension SDK; the Copilot app supplies it.
