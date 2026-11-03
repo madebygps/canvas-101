@@ -47,7 +47,7 @@ main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.25fr) min
 .lesson-step hr{border:0;border-top:1px solid var(--line);margin:22px 0 0}
 blockquote{margin:6px 0 10px;padding:12px 14px;border-radius:8px;background:var(--soft);font-size:15px;overflow-wrap:anywhere}
 .lesson-step [data-copy]{margin-bottom:16px}
-.lesson-step .send{background:var(--lesson);border-color:var(--lesson);color:#fff}
+.lesson-step .send{display:block;margin-top:8px;background:var(--lesson);border-color:var(--lesson);color:#fff}
 .lesson-step .send:hover{filter:brightness(.92);background:var(--lesson)}
 .finish{font-weight:600}
 .step-navigation{display:flex;gap:10px;padding-top:16px;margin-top:12px;border-top:1px solid var(--line)}
